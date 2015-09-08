@@ -1,6 +1,5 @@
 <link rel="import" href="elements/nav.html">
 <link rel="import" href="elements/themes.html">
-<link rel="import" href="elements/testimonials.html">
 <link rel="import" href="elements/contact.html">
 <link rel="import" href="elements/footer.html">
 
@@ -211,8 +210,53 @@
 	<!-- .container -->
 </section>
 
-<!-- CallToAction end --> 
-<testimonial-element></testimonial-element>
+<!-- CallToAction end -->
+
+
+<!-- Testimonials start -->
+
+<section id="testimonials" class="pfblock pfblock-gray">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <div class="pfblock-header wow fadeInUp">
+                    <h2 class="pfblock-title">What my clients say</h2>
+                    <div class="pfblock-line"></div>
+                    <div class="pfblock-subtitle">No one lights a lamp in order
+                        to hide it behind the door: the purpose of light is to create more
+                        light, to open people’s eyes, to reveal the marvels around.</div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+
+            <div id="cbp-qtrotator" class="cbp-qtrotator">
+                <template is="dom-repeat" items="{{messages}}">
+                    <div class="cbp-qtcontent">
+                        <img src="{{item.imageUrl}}" alt="{{item.alt}}" />
+                        <blockquote>
+                            <p>{{item.content}}</p>
+                            <footer>{{item.author}}</footer>
+                        </blockquote>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <!-- .row -->
+
+    </div>
+    <!-- .row -->
+</section>
+
+<!-- Testimonial end -->
 
 <contact-element></contact-element> 
 
@@ -220,6 +264,25 @@
 </template> <script>	
     Polymer({
         is : 'home-page',
+        properties: {
+            messages: {
+                type: Array,
+                value: [
+                    {
+                        imageUrl: "../../assets/images/client-1.jpg",
+                        alt: "client-1",
+                        author: "Pino Caruso",
+                        content: "Work with John was a pleasure. He understood exactly what I wanted and created an awesome site for my company."
+                    },
+                    {
+                        imageUrl: "../../assets/images/client-2.jpg",
+                        alt: "client-2",
+                        author: "Jane Doe",
+                        content: "I'm really happy with the results. Get 100% satisfaction is difficult but Alex got it without problems."
+                    }
+                ]
+            }
+        },
         attached : function() {
 			$('#status').fadeOut();
 			$('#preloader').delay(300).fadeOut('slow');
@@ -263,6 +326,31 @@
                 });
             }, {
                 offset : '80%'
+            });
+
+            /* ---------------------------------------------- /*
+             * Quote Rotator
+             /* ---------------------------------------------- */
+
+            $(function() {
+                /*
+                 - how to call the plugin:
+                 $( selector ).cbpQTRotator( [options] );
+                 - options:
+                 {
+                 // default transition speed (ms)
+                 speed : 700,
+                 // default transition easing
+                 easing : 'ease',
+                 // rotator interval (ms)
+                 interval : 8000
+                 }
+                 - destroy:
+                 $( selector ).cbpQTRotator( 'destroy' );
+                 */
+
+                $('#cbp-qtrotator').cbpQTRotator();
+
             });
 
             /* ---------------------------------------------- /*
