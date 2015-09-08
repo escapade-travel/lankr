@@ -402,17 +402,13 @@
 <contact-element></contact-element> 
 
 <footer-element></footer-element>
-</template> <script>
+</template> <script>	
     Polymer({
         is : 'home-page',
-        ready : function() {
-			
-            $('#status').fadeOut();
-            $('#preloader').delay(300).fadeOut('slow');
-
-        },
         attached : function() {
-
+			$('#status').fadeOut();
+			$('#preloader').delay(300).fadeOut('slow');
+		
             /* ---------------------------------------------- /*
              * Smooth scroll / Scroll To Top
             /* ---------------------------------------------- */
